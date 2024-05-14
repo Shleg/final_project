@@ -1,0 +1,22 @@
+    {% extends 'base.html' %}
+
+    {% block title %}
+        {% if recipe_id %}
+            Редактировать рецепт: {{ recipe.title }}
+        {% else %}
+            Добавить рецепт
+        {% endif %}
+    {% endblock %}
+
+    {% block content %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+    <h2>{% if recipe_id %}Редактировать рецепт: {{ recipe.title }}{% else %}Добавить рецепт{% endif %}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% if recipe_id %}Обновить{% else %}Добавить{% endif %}</button>
+    </form>
+        </div>
+    </div>
+    {% endblock %}

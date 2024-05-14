@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+    {% if recipe.image %}
+        <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}" style="width: 300px;">
+    {% else %}
+        <p>Изображение не указано</p>
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ recipe.title }}</h5>
+        <p class="card-text"><strong>Категории:</strong>
+            {% for cat in categories %}
+                {{ cat.category.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <p class="card-text"><strong>Описание:</strong> {{ recipe.description }}</p>
+        <p class="card-text"><strong>Шаги приготовления:</strong> {{ recipe.preparation_steps }}</p>
+        <p class="card-text"><strong>Время приготовления:</strong> {{ recipe.cooking_time }} минут</p>
+        <p class="card-text"><strong>Ингредиенты:</strong> {{ recipe.ingredients }}</p>
+        <p class="card-text"><strong>Автор:</strong> {{ recipe.author.username }}</p>
+        {% if user.is_authenticated and user == recipe.author %}
+            <a href="{% url 'edit_recipe' recipe_id=recipe.id %}" class="btn btn-primary">Редактировать рецепт</a>
+        {% elif user.is_authenticated %}
+            <p class="text-danger">Редактирование не автором запрещено.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
