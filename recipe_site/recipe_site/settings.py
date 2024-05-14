@@ -92,7 +92,7 @@ WSGI_APPLICATION = "recipe_site.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shleg$default',
+        'NAME': 'shleg$recipe',
         'USER': 'shleg',
         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
         'HOST': 'shleg.mysql.pythonanywhere-services.com',
