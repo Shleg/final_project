@@ -1,0 +1,24 @@
+# PyCharm
+.idea/
+
+# Django
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+
+# Static files
+/staticfiles/
+
+# Media
+/media/
+
+# Local development settings
+local_settings.py
+
+# Database
+db.sqlite3
+
+# Virtual environment
+venv/
+.env
